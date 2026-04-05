@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="UTF-8">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>snake and ladders</title>
@@ -11,24 +11,24 @@
 
         }
         #total-board {
-            display: grid;
-            grid-template-columns: repeat(10, 50px);
-            grid-template-rows: repeat(10,50px);
-            margin: 20px auto;
-            border: 20x solid #333;
-            width:500px;
-            height: 500px;
-            position: relative;
+        display: grid;
+        grid-template-columns: repeat(10, 50px);
+        grid-template-rows: repeat(10, 50px);
+        margin: 20px auto;
+        border: 2px solid #333;
+        width: 500px;
+        height: 500px;
+        position: relative;
         }
         .cell {
-            border: 1px solid #999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            position: relative;
-            z-index: 1;
-            font-weight: bold;
+        border: 1px solid #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        position: relative;
+        z-index: 1;
+        font-weight: bold;
         }
         button {
             padding: 10px 20px ;
@@ -43,47 +43,64 @@
 
         }
         .p1 {
-            background: blue;
+            background: violet;
             bottom: 20x;
             left: 2px;
         }
         .p2 {
-            background: green;
+            background: indigo;
             top: 2px;
             right: 2px;
 
         }
-        roll {
+        #controls {
+            margin-top: 20px;
+        }
+        .roll {
             border-radius: 50px;
 
         }
-        .ladder {
+    .ladder {
+      position: absolute;
+      width: 40px;
+      height: 180px;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0,
+          transparent 16px,
+          #caa26a 16px,
+          #caa26a 20px
+        ),
+        linear-gradient(
+          90deg,
+          #b4864b 0,
+          #b4864b 8px,
+          transparent 8px,
+          transparent calc(100% - 8px),
+          #b4864b calc(100% - 8px),
+          #b4864b 100%
+        );
+      background-position: center, center;
+      background-size: 100% 100%, 100% 100%;
+      opacity: 0.9;
+      mix-blend-mode: multiply;
+      filter: saturate(0.95) contrast(1.05);
+      z-index: 1;
+    }
+        .snake {
             position: absolute;
-            width: 50px;
-            height: 180px;
-            background-image: 
-            repeating-linear-gradient(
-                0deg,
-                transparent 0,
-                transparent 16px,
-                #caa26a 16px,#caa 20px
-            ),
-            linear-gradient(
-                90deg,
-                #b4864b 0,
-                #b4864b 8px,
-                transparent 8px,m
-                transparentt calc(100% - 8px),
-                #b4864b 100%
-            );
-            background-position: center, center;
-            background-size: 100% 100%,100% 100%;
+            width: 35px;
+            height: 145px;
+            background-image:url("../fin.png");
             opacity: 0.9;
-            mix-blend-mode: multiply;
-            filter: saturate(0.95) contrast(1.05);
-            z-index: 1;
-
-
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            z-index:1;
+        }
+        .snake.flip {
+            transform: scaleX(-1)
         }
         
 
@@ -91,7 +108,7 @@
 </head>
 <body>
     <h1>snake and ladders</h1>
-    <div id=" total-board">
+    <div id="total-board">
         <div class="cell" id="91">91</div><div class="cell" id="92">92</div><div class="cell" id="93">93</div><div class="cell" id="94">94</div><div class="cell" id="95">95</div><div class="cell" id="96">96</div><div class="cell" id="97">97</div><div class="cell" id="98">98</div><div class="cell" id="99">99</div><div class="cell" id="100">100</div>
         <div class="cell" id="90">90</div><div class="cell" id="89">89</div><div class="cell" id="88">88</div><div class="cell" id="87">87</div><div class="cell" id="86">86</div><div class="cell" id="85">85</div><div class="cell" id="84">84</div><div class="cell" id="83">83</div><div class="cell" id="82">82</div><div class="cell" id="81">81</div>
         <div class="cell" id="71">71</div><div class="cell" id="72">72</div><div class="cell" id="73">73</div><div class="cell" id="74">74</div><div class="cell" id="75">75</div><div class="cell" id="76">76</div><div class="cell" id="77">77</div><div class="cell" id="78">78</div><div class="cell" id="79">79</div><div class="cell" id="80">80</div>
@@ -103,15 +120,17 @@
         <div class="cell" id="11">11</div><div class="cell" id="12">12</div><div class="cell" id="13">13</div><div class="cell" id="14">14</div><div class="cell" id="15">15</div><div class="cell" id="16">16</div><div class="cell" id="17">17</div><div class="cell" id="18">18</div><div class="cell" id="19">19</div><div class="cell" id="20">20</div>
         <div class="cell" id="10">10</div><div class="cell" id="09">09</div><div class="cell" id="08">08</div><div class="cell" id="07">07</div><div class="cell" id="06">06</div><div class="cell" id="05">05</div><div class="cell" id="04">04</div><div class="cell" id="03"0>3</div><div class="cell" id="02">02</div><div class="cell" id="01">01</div>
         
-        <div class="ladder" style="left: 157px; top:65px; height: 270pz; width: 35px; transform: rotate(-22deg);"></div>
-        <div class="ladder" style="left: 80px; top:285px; height: 95px;width: 35px; transform: rotate(27deg);"></div>
-        <div class="ladder" style="left:285px; top:110px;height:115px; width: 25px; transform: rotate(27deg);"></div>
-        <div class="ladder" style="left:360px; top:352px;height:95px; width:35px; transform: rotate(-60deg);"></div>
-        <div class="ladder" style="left: 60px; top:60px; height:135px; width: 35px; transform: rotate(-43deg);"></div>
-        <div class="ladder" style="left: 400px;top: 204px;height: 145px; width: 35px;transform: rotate(43deg);"></div>
-        <div class="ladder" style="left: 400px; top:54; height:145px;width: 35px;transform: rotate(43deg);"></div>
-        <div class="ladder" style="left: 130px; top: -13px;height: 245px;width: 35px;transform: rotate(47deg);"></div>
-        <div class="ladder" style="left: 50px;top:355px;height:130px;width:35px;transform:rotate(47deg)"></div>
+        <div class="ladder" style="left: 157px; top: 65px; height: 270px;width: 35px; transform: rotate(-22deg);"></div>
+        <div class="ladder" style="left: 80px; top: 285px; height: 95px;width: 35px; transform: rotate(27deg);"></div>
+        <div class="ladder" style="left: 285px; top: 110px; height: 115px;width: 35px; transform: rotate(27deg);"></div>
+        <div class="ladder" style="left: 360px; top: 352px; height: 95px;width: 35px; transform: rotate(-60deg);"></div>
+        <div class="ladder" style="left: 60px; top: 60px; height: 135px;width: 35px; transform: rotate(-43deg);"></div>
+        <div class="ladder" style="left: 400px; top: 204px; height: 145px;width: 35px; transform: rotate(43deg);"></div>
+        <div class="snake"  style="left: 400px; top: 54px; height: 145px;width: 35px; transform: rotate(43deg);"></div>
+        <div class="snake" style="left: 130px;top: -13px; height: 245px;width: 35px; transform: rotate(47deg);"></div>
+        <div class="snake" style="left: 50px;top: 355px; height: 130px;width: 35px; transform: rotate(47deg);"></div>
+        <div class="snake flip" style="left: 180px; top: 200px; height: 200px; width: 35px;rotate: calc(-35deg);"></div>
+        <div class="snake flip" style="left: 353px;top: 200px;height: 100px;width: 35px;rotate: calc(-35deg)"></div>
 
     </div>
     <div class="controls">
@@ -119,3 +138,4 @@
         <button>start</button>
     </div>
 </body>
+</html>
