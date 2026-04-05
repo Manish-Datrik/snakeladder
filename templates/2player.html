@@ -118,7 +118,7 @@
         <div class="cell" id="31">31</div><div class="cell" id="32">32</div><div class="cell" id="33">33</div><div class="cell" id="34">34</div><div class="cell" id="35">35</div><div class="cell" id="36">36</div><div class="cell" id="37">37</div><div class="cell" id="38">38</div><div class="cell" id="39">39</div><div class="cell" id="40">40</div>
         <div class="cell" id="30">30</div><div class="cell" id="29">29</div><div class="cell" id="28">28</div><div class="cell" id="27">27</div><div class="cell" id="26">26</div><div class="cell" id="25">25</div><div class="cell" id="24">24</div><div class="cell" id="23">23</div><div class="cell" id="22">22</div><div class="cell" id="21">21</div>
         <div class="cell" id="11">11</div><div class="cell" id="12">12</div><div class="cell" id="13">13</div><div class="cell" id="14">14</div><div class="cell" id="15">15</div><div class="cell" id="16">16</div><div class="cell" id="17">17</div><div class="cell" id="18">18</div><div class="cell" id="19">19</div><div class="cell" id="20">20</div>
-        <div class="cell" id="10">10</div><div class="cell" id="09">09</div><div class="cell" id="08">08</div><div class="cell" id="07">07</div><div class="cell" id="06">06</div><div class="cell" id="05">05</div><div class="cell" id="04">04</div><div class="cell" id="03"0>3</div><div class="cell" id="02">02</div><div class="cell" id="01">01</div>
+        <div class="cell" id="10">10</div><div class="cell" id="9">9</div><div class="cell" id="8">8</div><div class="cell" id="7">7</div><div class="cell" id="6">6</div><div class="cell" id="5">5</div><div class="cell" id="4">4</div><div class="cell" id="3">3</div><div class="cell" id="2">2</div><div class="cell" id="1">1</div>
         
         <div class="ladder" style="left: 157px; top: 65px; height: 270px;width: 35px; transform: rotate(-22deg);"></div>
         <div class="ladder" style="left: 80px; top: 285px; height: 95px;width: 35px; transform: rotate(27deg);"></div>
@@ -129,13 +129,143 @@
         <div class="snake"  style="left: 400px; top: 54px; height: 145px;width: 35px; transform: rotate(43deg);"></div>
         <div class="snake" style="left: 130px;top: -13px; height: 245px;width: 35px; transform: rotate(47deg);"></div>
         <div class="snake" style="left: 50px;top: 355px; height: 130px;width: 35px; transform: rotate(47deg);"></div>
-        <div class="snake flip" style="left: 180px; top: 200px; height: 200px; width: 35px;rotate: calc(-35deg);"></div>
-        <div class="snake flip" style="left: 353px;top: 200px;height: 100px;width: 35px;rotate: calc(-35deg)"></div>
+        <div class="snake flip" style="left: 180px; top: 200px; height: 200px; width: 35px;rotate: calc(-50deg);"></div>
+        <div class="snake flip" style="left: 353px;top: 200px;height: 100px;width: 35px;rotate: calc(-70deg)"></div>
 
     </div>
     <div class="controls">
         <p id="turn">Player 1 turn</p>
-        <button>start</button>
+        <button onclick="start()" id="start">Start</button>
+        <button onclick="rollDice()" style="width: 50px; height: 50px;visibility: hidden; margin-left: -143px;" id="roll"></button>
+        
     </div>
+    <script>
+        let turn = 'A';
+        let a = 1, b = 1;
+        let ladder = [19, 29, 35, 38, 56, 68];
+        let ladder1 = [24, 48, 88, 60, 77, 90];
+        let snake = [28, 53, 57, 81, 95];
+        let snake1 = [10, 25, 42, 63, 69];
+        let turns = document.getElementById("turn");
+
+        function snakeladder() {
+            snake_check();
+            ladder_check();
+        }
+
+        function ladder_check() {
+            if (turn === 'A' && ladder.includes(a)) {
+                let x = ladder.indexOf(a);
+                a = ladder1[x];
+            } else if (turn === 'B' && ladder.includes(b)) {
+                let y = ladder.indexOf(b);
+                b = ladder1[y];
+            }
+        }
+
+        function snake_check() {
+            if (turn === 'A' && snake.includes(a)) {
+                let y = snake.indexOf(a);
+                a = snake1[y];
+            } else if (turn === 'B' && snake.includes(b)) {
+                let y = snake.indexOf(b);
+                b = snake1[y];
+            }
+        }
+
+        function display(x) {
+            let roll = document.getElementById("roll");
+            let url = "../" + x + ".jpeg";
+            roll.style.backgroundImage = "url('" + url + "')";
+            roll.style.backgroundSize = "cover";
+            roll.style.backgroundPosition = "center";
+            roll.style.borderRadius = "3px";
+        }
+
+        function start() {
+            let a1 = document.getElementById("1");
+            let new1 = document.createElement("div");
+            new1.className = "player p1";
+            a1.append(new1);
+            let new3 = document.createElement("div");
+            new3.className = "player p2";
+            a1.append(new3);
+            
+            let roll = document.getElementById("roll");
+            roll.style.visibility = "visible";
+            let startBtn = document.getElementById("start");
+            startBtn.style.visibility = "hidden";
+            
+            turns.innerText = "Player 1 turn";
+            turns.style.color = "violet";
+        }
+
+        function rollDice() {
+            let curr = Math.floor(Math.random() * 6) + 1;
+            display(curr);
+
+            if (turn === 'A') {
+                if (a + curr <= 100) {
+                    a += curr;
+                    snakeladder();
+                }
+                updatePlayerPosition();
+                
+                if (a === 100) {
+                    turns.textContent = 'Player 1 won!';
+                    document.getElementById("roll").style.visibility = "hidden";
+                    setTimeout(() => { alert("Player 1 wins!"); resetGame(); }, 100);
+                    return;
+                }
+                
+                if (curr !== 6) {
+                    turn = 'B';
+                    turns.style.color = "indigo";
+                    turns.textContent = 'Player 2 turn';
+                }
+            } else if (turn === 'B') {
+                if (b + curr <= 100) {
+                    b += curr;
+                    snakeladder();
+                }
+                updatePlayerPosition();
+                
+                if (b === 100) {
+                    turns.textContent = 'Player 2 won!';
+                    document.getElementById("roll").style.visibility = "hidden";
+                    setTimeout(() => { alert("Player 2 wins!"); resetGame(); }, 100);
+                    return;
+                }
+                
+                if (curr !== 6) {
+                    turn = 'A';
+                    turns.style.color = "violet";
+                    turns.textContent = 'Player 1 turn';
+                }
+            }
+        }
+
+        function updatePlayerPosition() {
+            if (turn === 'A') {
+                let dele1 = document.getElementsByClassName("p1");
+                if (dele1.length > 0) dele1[0].remove();
+                let a1 = document.getElementById(String(a));
+                let newle = document.createElement("div");
+                newle.className = "player p1";
+                a1.append(newle);
+            } else if (turn === 'B') {
+                let dele2 = document.getElementsByClassName("p2");
+                if (dele2.length > 0) dele2[0].remove();
+                let b1 = document.getElementById(String(b));
+                let newle = document.createElement("div");
+                newle.className = "player p2";
+                b1.append(newle);
+            }
+        }
+
+        function resetGame() {
+            location.reload();
+        }
+    </script>
 </body>
 </html>
