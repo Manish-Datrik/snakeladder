@@ -25,11 +25,68 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 12px;
             position: relative;
             z-index: 1;
             font-weight: bold;
         }
+        button {
+            padding: 10px 20px ;
+            margin-left: 50px;
+            font-size: 16px;
+        }
+        .player {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+
+        }
+        .p1 {
+            background: blue;
+            bottom: 20x;
+            left: 2px;
+        }
+        .p2 {
+            background: green;
+            top: 2px;
+            right: 2px;
+
+        }
+        roll {
+            border-radius: 50px;
+
+        }
+        .ladder {
+            position: absolute;
+            width: 50px;
+            height: 180px;
+            background-image: 
+            repeating-linear-gradient(
+                0deg,
+                transparent 0,
+                transparent 16px,
+                #caa26a 16px,#caa 20px
+            ),
+            linear-gradient(
+                90deg,
+                #b4864b 0,
+                #b4864b 8px,
+                transparent 8px,m
+                transparentt calc(100% - 8px),
+                #b4864b 100%
+            );
+            background-position: center, center;
+            background-size: 100% 100%,100% 100%;
+            opacity: 0.9;
+            mix-blend-mode: multiply;
+            filter: saturate(0.95) contrast(1.05);
+            z-index: 1;
+
+
+        }
         
+
     </style>
 </head>
 <body>
@@ -46,10 +103,19 @@
         <div class="cell" id="11">11</div><div class="cell" id="12">12</div><div class="cell" id="13">13</div><div class="cell" id="14">14</div><div class="cell" id="15">15</div><div class="cell" id="16">16</div><div class="cell" id="17">17</div><div class="cell" id="18">18</div><div class="cell" id="19">19</div><div class="cell" id="20">20</div>
         <div class="cell" id="10">10</div><div class="cell" id="09">09</div><div class="cell" id="08">08</div><div class="cell" id="07">07</div><div class="cell" id="06">06</div><div class="cell" id="05">05</div><div class="cell" id="04">04</div><div class="cell" id="03"0>3</div><div class="cell" id="02">02</div><div class="cell" id="01">01</div>
         
+        <div class="ladder" style="left: 157px; top:65px; height: 270pz; width: 35px; transform: rotate(-22deg);"></div>
+        <div class="ladder" style="left: 80px; top:285px; height: 95px;width: 35px; transform: rotate(27deg);"></div>
+        <div class="ladder" style="left:285px; top:110px;height:115px; width: 25px; transform: rotate(27deg);"></div>
+        <div class="ladder" style="left:360px; top:352px;height:95px; width:35px; transform: rotate(-60deg);"></div>
+        <div class="ladder" style="left: 60px; top:60px; height:135px; width: 35px; transform: rotate(-43deg);"></div>
+        <div class="ladder" style="left: 400px;top: 204px;height: 145px; width: 35px;transform: rotate(43deg);"></div>
+        <div class="ladder" style="left: 400px; top:54; height:145px;width: 35px;transform: rotate(43deg);"></div>
+        <div class="ladder" style="left: 130px; top: -13px;height: 245px;width: 35px;transform: rotate(47deg);"></div>
+        <div class="ladder" style="left: 50px;top:355px;height:130px;width:35px;transform:rotate(47deg)"></div>
+
     </div>
     <div class="controls">
         <p id="turn">Player 1 turn</p>
         <button>start</button>
-        <button></button>
     </div>
 </body>
