@@ -9,12 +9,25 @@
             background-color: lightblue;
             padding: 50px;
             background-color: lightgreen;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            height: 100vh;
+            width: 100vw;
         }
         button{
             height: 50px;
             width: 75px;
             border: 3px solid transparent;
-            background-color: aquamarine;
+            background-color: #7fffd4;
+            border-radius: 2px solid black;
+            display: inline;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 30px;
+            
 
         }
         button:hover {
@@ -27,9 +40,13 @@
     </style>
 </head>
 <body>
-    <h1>Snake and ladder</h1>
+    <h1 style="text-decoration: underline; margin-left: 140px;">Snake and ladder</h1>
+    <div class="board">
+        <img src="../board.jpg" width="500px" height="500px">
+    </div>
     <button><a href="2player.html">2 player mode</button>
-    <button><a href="3player.html">3 player mode</button>
+    <button style="background-color: rgb(255, 117, 117); margin-left: 150px;"><a href="3player.html">3 player mode</button>
+    <button style="background-color: #2e8b57; margin-left: 130px;"><a href="4player.html">4 player mode</button>
         
 </body>
 </html>
