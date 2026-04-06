@@ -1,4 +1,4 @@
-Snake and Ladders Game
+Snake and Ladders Game https://snakeorladder.netlify.app/
 
 I built this game as a simple digital version of the classic Snake and Ladders board game. The goal was to create something fun, interactive, and easy to play directly in the browser. Players roll a dice and move across a 100-square board filled with snakes and ladders. It’s a light and entertaining game that works well for quick matches with friends.
 
